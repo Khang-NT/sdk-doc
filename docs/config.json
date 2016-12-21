@@ -5,6 +5,7 @@
         "theme": "daux-blue",
         "float": false,
         "auto_toc": false,
-        "search" : false
+        "search" : false,
+        "toggle_code": false
     }
 }
