@@ -1,0 +1,10 @@
+{
+    "title": "MStage.io",
+    "tagline": "Documentation for UserKit and LoginKit SDK",
+    "html": {
+        "theme": "daux-blue",
+        "float": false,
+        "auto_toc": false,
+        "search" : false
+    }
+}
