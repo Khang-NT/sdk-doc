@@ -6,6 +6,7 @@
         "float": false,
         "auto_toc": false,
         "search" : false,
-        "toggle_code": false
+        "toggle_code": false,
+        "edit_on_github": "khang-nt/sdk-doc/blob/master/docs"
     }
 }
