@@ -1,0 +1,15 @@
+machine:
+  python:
+    version: 3.5.2
+test:
+  override:
+    - sh generate.sh
+    - >
+    if [ "$CIRCLE_BRANCH" = "master" ]; then
+         git remote add ci "$REMOTE";
+         git config --global user.email "khang.neon.1997@gmail.com";
+         git config --global user.name "Circle CI";
+         git add --all . ;
+         git commit -m "[skip ci] Update document $CIRCLE_BUILD_NUM";
+         git push -f ci master:gh-pages || true; # ignore push error
+     fi;
