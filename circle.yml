@@ -1,15 +1,16 @@
-machine:
-    python:
-        version: 3.5.2
-    php:
-        version: 7.0.4
+---
 dependencies:
-    pre:
-        - composer global require justinwalsh/daux.io
+  pre:
+    - "composer global require justinwalsh/daux.io"
+machine:
+  php:
+    version: "7.0.4"
+  python:
+    version: "3.5.2"
 test:
-    override:
-        - sh generate.sh
-        - >
+  override:
+    - "sh generate.sh"
+    - |
         if [ "$CIRCLE_BRANCH" = "master" ]; then
              git remote add ci "$REMOTE";
              git config --global user.email "khang.neon.1997@gmail.com";
