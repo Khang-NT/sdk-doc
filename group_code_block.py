@@ -17,8 +17,9 @@ if len(sys.argv) > 1:
     script_tag.append(
         "function openTab(evt,tab_content,active_id,tab_links){var i,tabcontent,tablinks;tabcontent=document.getElementsByClassName(tab_content);for(i=0;i<tabcontent.length;i++){tabcontent[i].style.display='none'}tablinks=document.getElementsByClassName(tab_links);for(i=0;i<tablinks.length;i++){tablinks[i].className=tablinks[i].className.replace(' active','')}document.getElementById(active_id).style.display='block';evt.currentTarget.className+=' active'}")
     soup.body.append(script_tag)
+    soup.findAll('a')
 
-    html = str(soup)
+    html = re.sub(r"(<a[^>]+href=\")(.+)(\">MStage.io<\/a>)", r"\1http://mstage.io\3", str(soup))
     regex = r"(<pre><code class=\"language-([^\s\n\"]*).*?(?=\")\">.+?(?=<\/code>)<\/code><\/pre>)"
 
     matches = re.finditer(regex, html, re.DOTALL)
