@@ -1,15 +1,20 @@
 machine:
-  python:
-    version: 3.5.2
+    python:
+        version: 3.5.2
+    php:
+        version: 7.0.4
+dependencies:
+    pre:
+        - composer global require justinwalsh/daux.io
 test:
-  override:
-    - sh generate.sh
-    - >
-    if [ "$CIRCLE_BRANCH" = "master" ]; then
-         git remote add ci "$REMOTE";
-         git config --global user.email "khang.neon.1997@gmail.com";
-         git config --global user.name "Circle CI";
-         git add --all . ;
-         git commit -m "[skip ci] Update document $CIRCLE_BUILD_NUM";
-         git push -f ci master:gh-pages || true; # ignore push error
-     fi;
+    override:
+        - sh generate.sh
+        - >
+        if [ "$CIRCLE_BRANCH" = "master" ]; then
+             git remote add ci "$REMOTE";
+             git config --global user.email "khang.neon.1997@gmail.com";
+             git config --global user.name "Circle CI";
+             git add --all . ;
+             git commit -m "[skip ci] Update document $CIRCLE_BUILD_NUM";
+             git push -f ci master:gh-pages || true; # ignore push error
+        fi;
