@@ -19,7 +19,7 @@ if len(sys.argv) > 1:
     soup.body.append(script_tag)
     soup.findAll('a')
 
-    html = re.sub(r"(<a[^>]+href=\")(.+)(\">MStage.io<\/a>)", r"\1http://mstage.io\3", str(soup))
+    html = re.sub(r"(<a[^>]+href=\")(.+)(\">mStage.io<\/a>)", r"\1http://mstage.io\3", str(soup))
     regex = r"(<pre><code class=\"language-([^\s\n\"]*).*?(?=\")\">.+?(?=<\/code>)<\/code><\/pre>)"
 
     matches = re.finditer(regex, html, re.DOTALL)
