@@ -15,7 +15,7 @@ if len(sys.argv) > 1:
 
     script_tag = soup.new_tag("script")
     script_tag.append(
-        "function openTab(evt,tab_content,active_id,tab_links){var i,tabcontent,tablinks;tabcontent=document.getElementsByClassName(tab_content);for(i=0;i<tabcontent.length;i++){tabcontent[i].style.display='none'}tablinks=document.getElementsByClassName(tab_links);for(i=0;i<tablinks.length;i++){tablinks[i].className=tablinks[i].className.replace(' active','')}document.getElementById(active_id).style.display='block';evt.currentTarget.className+=' active'}")
+        "function openTab(evt,tab_content,active_id,tab_links){var i,tabcontent,tablinks;tabcontent=document.getElementsByClassName(tab_content);for(i=0;i<tabcontent.length;i++){tabcontent[i].style.display='none'}tablinks=document.getElementsByClassName(tab_links);for(i=0;i<tablinks.length;i++){tablinks[i].className=tablinks[i].className.replace(' active','')}document.getElementById(active_id).style.display='block';evt.currentTarget.className+=' active'};for(default_open_list=document.getElementsByClassName('default_open'),i=0;i<default_open_list.length;i++)default_open_list[i].click();")
     soup.body.append(script_tag)
     soup.findAll('a')
 
@@ -49,23 +49,25 @@ if len(sys.argv) > 1:
         print(matchNum)
         start = match.start() + insertCount
         end = match.end() + insertCount
+        default_open = False
         if len(blocks) == 1:
             first_match = start
+            default_open = True
 
 
         if lang == 'java':
-            tabs += "\n<li><a href=\"javascript:void(0)\" class=\"tablinks tl%d\" onclick=\"openTab(event, 'tc%d', 'android%d', 'tl%d')\">Android</a></li>" % (
-                count, count, count, count)
+            tabs += "\n<li><a href=\"javascript:void(0)\" class=\"tablinks tl%d %s\" onclick=\"openTab(event, 'tc%d', 'android%d', 'tl%d')\">Android</a></li>" % (
+                count, "default_open" if default_open else "", count, count, count)
             html = html[:start] + "\n<div id='android%d' class='tabcontent tc%d'>\n" % (count, count) + html[start:end] + "\n</div>\n" + html[end:]
             insertCount += len("\n<div id='android%d' class='tabcontent tc%d'>\n" % (count, count) + "\n</div>\n")
         elif lang == 'swift':
-            tabs += "\n<li><a href=\"javascript:void(0)\" class=\"tablinks tl%d\" onclick=\"openTab(event, 'tc%d', 'ios%d', 'tl%d')\">IOS</a></li>" % (
-                count, count, count, count)
+            tabs += "\n<li><a href=\"javascript:void(0)\" class=\"tablinks tl%d %s\" onclick=\"openTab(event, 'tc%d', 'ios%d', 'tl%d')\">IOS</a></li>" % (
+                count, "default_open" if default_open else "", count, count, count)
             html = html[:start] + "\n<div id='ios%d' class='tabcontent tc%d'>\n" % (count, count) + html[start:end] + "\n</div>\n" + html[end:]
             insertCount += len("\n<div id='ios%d' class='tabcontent tc%d'>\n" % (count, count) + "\n</div>\n")
         elif lang == 'javascript':
-            tabs += "\n<li><a href=\"javascript:void(0)\" class=\"tablinks tl%d\" onclick=\"openTab(event, 'tc%d', 'web%d', 'tl%d')\">Web</a></li>" % (
-                count, count, count, count)
+            tabs += "\n<li><a href=\"javascript:void(0)\" class=\"tablinks tl%d %s\" onclick=\"openTab(event, 'tc%d', 'web%d', 'tl%d')\">Web</a></li>" % (
+                count, "default_open" if default_open else "", count, count, count)
             html = html[:start] + "\n<div id='web%d' class='tabcontent tc%d'>\n" % (count, count) + html[start:end] + "\n</div>\n" + html[end:]
             insertCount += len("\n<div id='web%d' class='tabcontent tc%d'>\n" % (count, count) + "\n</div>\n")
 
