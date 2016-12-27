@@ -60,7 +60,7 @@
 <h1 id="page_Installation">Installation</h1>
 <hr/>
 <h4 id="page_Gradle_config">Gradle config:</h4>
-<ul class='tab'></ul><pre><code class="language-gradle">repositories {
+<pre><code class="language-gradle">repositories {
     jcenter()
 }
 dependencies {
@@ -68,8 +68,7 @@ dependencies {
 }
 </code></pre>
 <h4 id="page_AndroidManifestxml">AndroidManifest.xml</h4>
-<ul class='tab'>
-<li><a href="javascript:void(0)" class="tablinks tl1 " onclick="openTab(event, 'tc1', 'android1', 'tl1')">Android</a></li></ul><pre><code class="language-xml">&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+<pre><code class="language-xml">&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
 
 &lt;application
     android:name=".MainApplication"
@@ -79,8 +78,9 @@ dependencies {
 &lt;/application&gt;
 </code></pre>
 <h4 id="page_Initialization">Initialization</h4>
-
-<div id='android1' class='tabcontent tc1'>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl0 default_open" onclick="openTab(event, 'tc0', 'android0', 'tl0')">Android</a></li></ul>
+<div id='android0' class='tabcontent tc0'>
 <pre><code class="language-java">public class MainApplication extends Application {
     @Override
     public void onCreate() {

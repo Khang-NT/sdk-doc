@@ -32,6 +32,8 @@ if len(sys.argv) > 1:
     insertCount = 0
     for matchNum, match in enumerate(matches):
         lang = match.group(2)
+        if not (lang == 'java' or lang == 'swift' or lang == 'javascript'):
+            continue
 
         if lang in blocks or (last_end != -1 and match.start() - last_end > 5):
             tabs += "</ul>"

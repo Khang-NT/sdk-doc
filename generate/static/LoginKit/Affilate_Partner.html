@@ -121,12 +121,9 @@ view.addSubview(oAuthWebView)
 
 <div id='ios2' class='tabcontent tc2'>
 <pre><code class="language-swift">LoginKit.loginInstance.signUpAffiliateAccount("TestName", email: "testKaiwei@gmail.com", password: "12345678", registerToken: token, successBlock: { model in
-
             print(model!.authToken)
             print(model!.registerToken)
-
         }, failureBlock: { error in
-
             print(error!.message)
     })
 </code></pre>
