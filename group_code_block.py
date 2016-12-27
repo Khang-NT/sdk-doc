@@ -10,7 +10,7 @@ if len(sys.argv) > 1:
         soup = BeautifulSoup(txt, "html.parser")
     style_tag = soup.new_tag("style")
     style_tag.append(
-        "ul.tab{list-style-type:none;margin:0;padding:0;overflow:hidden;border:0 solid #ccc;background-color:#f1f1f1}ul.tab li{float:left}ul.tab li a{display:inline-block;color:#000;text-align:center;padding:14px 16px;text-decoration:none;transition:.3s;font-size:17px}.tabcontent{display:none;margin:0;padding:0;border:0 solid #ccc;border:none}ul.tab li a:hover{background-color:#ddd}ul.tab li a:focus,.active{background-color:#ccc}.tabcontent{-webkit-animation:fadeEffect 1s;animation:fadeEffect 1s}@-webkit-keyframes fadeEffect{from{opacity:0}to{opacity:1}}@keyframes fadeEffect{from{opacity:0}to{opacity:1}}.s-content pre{background:#fbfbfb;padding:20px;margin:0}")
+        ".Nav .Nav .Nav__item--active a {color: #004aff;} .Nav__item--active>a, .Nav__item--open>a {background-color: inherit;}ul.tab{list-style-type:none;margin:0;padding:0;overflow:hidden;border:0 solid #ccc;background-color:#f1f1f1}ul.tab li{float:left}ul.tab li a{display:inline-block;color:#000;text-align:center;padding:14px 16px;text-decoration:none;transition:.3s;font-size:17px}.tabcontent{display:none;margin:0;padding:0;border:0 solid #ccc;border:none}ul.tab li a:hover{background-color:#ddd}ul.tab li a:focus,.active{background-color:#ccc}.tabcontent{-webkit-animation:fadeEffect 1s;animation:fadeEffect 1s}@-webkit-keyframes fadeEffect{from{opacity:0}to{opacity:1}}@keyframes fadeEffect{from{opacity:0}to{opacity:1}}.s-content pre{background:#fbfbfb;padding:20px;margin:0}")
     soup.header.append(style_tag)
 
     script_tag = soup.new_tag("script")
