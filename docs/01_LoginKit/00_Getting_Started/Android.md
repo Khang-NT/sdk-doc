@@ -40,6 +40,15 @@ public class MainApplication extends Application {
 
 # Basic tutorials
 ----------
+## Logging
+Logging is disabled by default. To show/hide logs of `LoginKit`, just add some lines to your code:
+```java
+// import userkit.sdk.identity.Logging;
+    // show log
+    Logging.enable();
+    // hide log
+    Logging.disable();
+```
 ## Java concurrency support using RxJava2:
 ```java
 void doResetPassword(String email) {
