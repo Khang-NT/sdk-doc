@@ -53,10 +53,10 @@ Logging is disabled by default. To show/hide logs of `LoginKit`, just add some l
 ```java
 void doResetPassword(String email) {
     LoginKit.getInstance().resetPassword(email)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(() -> Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
-            Throwable::printStackTrace);
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(() -> Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
+                Throwable::printStackTrace);
 }
 ```
 ## Lambda expression friendly
@@ -73,3 +73,46 @@ void doResetPassword(String email) {
 > This job will be scheduled to run in IO thread pool (`Schedulers.io()`), and will try to call back the consumer - `onSuccess` in the current thread (the thread call `resetPassword`), if can't, `onSuccess` will call back on **main thread**.
 
 And the same thing with all API has callback function.
+## Handling errors
+React with specific `Exception` case is one of the most important parts in programming.
+`LoginKit` make it simply to handle, if the error encountered is:
+  * `IdentityException`: you made a bad request.
+  You can print it into `Logcat` to get more detail. A convenient that you can know exactly
+  what sort of error occurred, using `IdentityException.getIdentityError`.
+  * `IOException`: maybe due to networking, the connection to server is broken during the request.
+  * All other exceptions are of kind UNKNOWN, read the stack trace carefully.
+ 
+Assume that we are going to create new account with email and password,
+there are some exceptions that we must handle, such as:
+  * Email is invalid or already exists.
+  * Upload avatar failed due to networking.
+Now let see how we can handle it:
+```java
+ProfileProperties profileProps = ImmutableProfileProperties.builder()
+        .name("John")  
+        .avatar(avatarFile)
+        .build();
+LoginKit.getInstance()
+        .signUpNewProfile("hello@world.com", "123abc", false, profileProps)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(accountInfo -> {
+            Log.d(TAG, "Register account success: " + accountInfo);
+        }, error -> {
+            error.printStackTrace();
+            if (error instanceOf IdentityException) {
+                switch(((IdentityException) error).getIdentityError()) {
+                    case EMAIL_EXIST:
+                        Toast.makeText(this, "Email exist", Toast.LENGTH_SHORT).show();
+                        break;
+                    case INVALID_EMAIL_OR_PASSWORD:
+                        Toast.makeText(this, "Invalid Email or Password", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            } else if (error instanceOf IOException) {
+                // A network error happened
+            } else {
+                throw Exceptions.propagate(error);
+            }
+        })
+```
