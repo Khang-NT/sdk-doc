@@ -9,7 +9,8 @@
         "toggle_code": true,
         "edit_on_github": "khang-nt/sdk-doc/blob/master/docs",
         "links": {
-            "Android API Reference": "/sdk-doc/generate/android-source"
+            "Android API Reference": "/sdk-doc/generate/android-source",
+            "IOS API Reference": "/sdk-doc/generate/ios-source"
         },
         "date_modified": true
     }
