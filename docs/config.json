@@ -7,6 +7,10 @@
         "auto_toc": false,
         "search" : false,
         "toggle_code": true,
-        "edit_on_github": "khang-nt/sdk-doc/blob/master/docs"
+        "edit_on_github": "khang-nt/sdk-doc/blob/master/docs",
+        "links": {
+            "Android API Reference": "/sdk-doc/generate/android-source"
+        },
+        "date_modified": true
     }
 }
