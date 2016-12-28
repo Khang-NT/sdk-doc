@@ -41,6 +41,8 @@
 <hr/>
 <a href="/sdk-doc/generate/android-source" target="_blank">Android API Reference</a>
 <br/>
+<a href="/sdk-doc/generate/ios-source" target="_blank">IOS API Reference</a>
+<br/>
 <div class="CodeToggler">
 <hr/>
 <a class="CodeToggler__button CodeToggler__button--main" href="#">Show Code Blocks Inline</a><br>
@@ -55,7 +57,7 @@
 <div class="Page__header">
 <h1><a href="../../LoginKit/Affilate_Partner.html">LoginKit</a> <svg class="Page__header--separator" viewbox="0 0 477.175 477.175" xmlns="http://www.w3.org/2000/svg"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"></path></svg> <a href="../../LoginKit/Getting_Started/Android.html">Getting Started</a> <svg class="Page__header--separator" viewbox="0 0 477.175 477.175" xmlns="http://www.w3.org/2000/svg"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"></path></svg> <a href="../../LoginKit/Getting_Started/Android.html">Android</a></h1>
 <span style="float: left; font-size: 10px; color: gray;">
-            Wednesday, December 28, 2016 1:41 AM        </span>
+            Wednesday, December 28, 2016 2:42 AM        </span>
 <span style="float: right; font-size: 10px; color: gray;">
 <a href="https://github.com/khang-nt/sdk-doc/blob/master/docs/01_LoginKit/00_Getting_Started/Android.md" target="_blank">Edit on GitHub</a>
 </span>
@@ -65,6 +67,70 @@
 Build status:       <img alt="Build status" src="https://circleci.com/gh/jupitervn/userKit-Android-SDK/tree/master.svg?style=shield&amp;circle-token=0cb9923a82f369171f87d827bbc497e11b495e6d"/></br></p>
 <h1 id="page_Installation">Installation</h1>
 <hr/>
+<h4 id="page_Gradle">Gradle:</h4>
+<pre><code>repositories {
+    jcenter()
+}
+dependencies {
+    compile 'com.mstage.userkit:identity:$latest_version$'
+}
+</code></pre>
+<h4 id="page_AndroidManifestxml">AndroidManifest.xml</h4>
+<pre><code class="language-xml">&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+
+&lt;application
+    android:name=".MainApplication"
+    ...&gt;
+    &lt;meta-data android:name="USER_KIT_API_TOKEN" android:value="your_api_token_here" /&gt;
+
+&lt;/application&gt;
+</code></pre>
+<h4 id="page_Initialization">Initialization</h4>
+<pre><code class="language-Java">public class MainApplication extends Application {
+    @Override
+    public void onCreate() {
+        LoginKit.init(this);
+        // Or LoginKit.init(Context, USER_KIT_API_TOKEN)
+        // In case you haven't defined api token in AndroidManifest.xml
+    }
+}
+
+</code></pre>
+<h1 id="page_Basic_tutorials">Basic tutorials</h1>
+<hr/>
+<h2 id="page_Java_concurrency_support_using_RxJava2">Java concurrency support using RxJava2:</h2>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl0 default_open" onclick="openTab(event, 'tc0', 'android0', 'tl0')">Android</a></li></ul>
+<div id='android0' class='tabcontent tc0'>
+<pre><code class="language-java">void doResetPassword(String email) {
+    LoginKit.getInstance().resetPassword(email)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(() -&gt; Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
+            Throwable::printStackTrace);
+}
+</code></pre>
+</div>
+
+<h2 id="page_Lambda_expression_friendly">Lambda expression friendly</h2>
+<p>If you don't like <code>Observer</code> pattern, you can easily define callback functions
+which was designed to friendly with Java 8 Lambda expression:</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl1 default_open" onclick="openTab(event, 'tc1', 'android1', 'tl1')">Android</a></li></ul>
+<div id='android1' class='tabcontent tc1'>
+<pre><code class="language-java">void doResetPassword(String email) {
+    LoginKit.getInstance().resetPassword(email,
+        () -&gt; Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
+        Throwable::printStackTrace);
+}
+</code></pre>
+</div>
+
+<h4 id="page_Notice_that">Notice that</h4>
+<blockquote>
+<p>This job will be scheduled to run in IO thread pool (<code>Schedulers.io()</code>), and will try to call back the consumer - <code>onSuccess</code> in the current thread (the thread call <code>resetPassword</code>), if can't, <code>onSuccess</code> will call back on <strong>main thread</strong>.</p>
+</blockquote>
+<p>And the same thing with all API has callback function.</p>
 </div>
 <nav>
 <ul class="Pager">
