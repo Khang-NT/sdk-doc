@@ -59,6 +59,17 @@ void doResetPassword(String email) {
                 Throwable::printStackTrace);
 }
 ```
+#### Note:
+> This job won't run until you call `subscribe()`.
+
+If you want to run the request immediately and ignore the result, try it:
+```java
+LoginKit.getInstance().resetPassword(email)
+        .subscribeOn(Schedulers.io())
+        .subscribe();
+```
+Read more about [`RxJava`](https://github.com/ReactiveX/RxJava/wiki).
+
 ## Lambda expression friendly
 If you don't like `Observer` pattern, you can easily define callback functions
 which was designed to friendly with Java 8 Lambda expression:
@@ -81,24 +92,19 @@ React with specific `Exception` case is one of the most important parts in progr
   what sort of error occurred, using `IdentityException.getIdentityError`.
   * `IOException`: maybe due to networking, the connection to server is broken during the request.
   * All other exceptions are of kind UNKNOWN, read the stack trace carefully.
- 
+
 Assume that we are going to create new account with email and password,
 there are some exceptions that we must handle, such as:
   * Email is invalid or already exists.
   * Upload avatar failed due to networking.
+  
 Now let see how we can handle it:
 ```java
-ProfileProperties profileProps = ImmutableProfileProperties.builder()
-        .name("John")  
-        .avatar(avatarFile)
-        .build();
-LoginKit.getInstance()
-        .signUpNewProfile("hello@world.com", "123abc", false, profileProps)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(accountInfo -> {
+LoginKit.getInstance().signUpNewProfile("hello@world.com", "123abc", false, null,
+        accountInfo -> {
             Log.d(TAG, "Register account success: " + accountInfo);
-        }, error -> {
+        },
+        error -> {
             error.printStackTrace();
             if (error instanceOf IdentityException) {
                 switch(((IdentityException) error).getIdentityError()) {
@@ -114,5 +120,5 @@ LoginKit.getInstance()
             } else {
                 throw Exceptions.propagate(error);
             }
-        })
+        });
 ```

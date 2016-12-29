@@ -36,7 +36,7 @@
 </div>
 <div class="Collapsible__content">
 <!-- Navigation -->
-<ul class="Nav"><li class="Nav__item has-children"><a class="aj-nav folder" href="#"><i class="Nav__arrow"> </i>UserKit</a><ul class="Nav"><li class="Nav__item has-children"><a class="aj-nav folder" href="#"><i class="Nav__arrow"> </i>Getting Started</a><ul class="Nav"><li class="Nav__item "><a href="../UserKit/Getting_Started/Android.html">Android</a></li><li class="Nav__item "><a href="../UserKit/Getting_Started/IOS.html">IOS</a></li></ul></li></ul></li><li class="Nav__item Nav__item--open has-children"><a class="aj-nav folder" href="#"><i class="Nav__arrow"> </i>LoginKit</a><ul class="Nav"><li class="Nav__item has-children"><a class="aj-nav folder" href="#"><i class="Nav__arrow"> </i>Getting Started</a><ul class="Nav"><li class="Nav__item "><a href="../LoginKit/Getting_Started/Android.html">Android</a></li></ul></li><li class="Nav__item Nav__item--active"><a href="../LoginKit/Authenticate.html">Authenticate</a></li><li class="Nav__item "><a href="../LoginKit/Affilate_Partner.html">Affilate Partner</a></li></ul></li></ul>
+<ul class="Nav"><li class="Nav__item has-children"><a class="aj-nav folder" href="#"><i class="Nav__arrow"> </i>UserKit</a><ul class="Nav"><li class="Nav__item has-children"><a class="aj-nav folder" href="#"><i class="Nav__arrow"> </i>Getting Started</a><ul class="Nav"><li class="Nav__item "><a href="../UserKit/Getting_Started/Android.html">Android</a></li><li class="Nav__item "><a href="../UserKit/Getting_Started/IOS.html">IOS</a></li></ul></li></ul></li><li class="Nav__item Nav__item--open has-children"><a class="aj-nav folder" href="#"><i class="Nav__arrow"> </i>LoginKit</a><ul class="Nav"><li class="Nav__item has-children"><a class="aj-nav folder" href="#"><i class="Nav__arrow"> </i>Getting Started</a><ul class="Nav"><li class="Nav__item "><a href="../LoginKit/Getting_Started/Android.html">Android</a></li><li class="Nav__item "><a href="../LoginKit/Getting_Started/IOS.html">IOS</a></li></ul></li><li class="Nav__item Nav__item--active"><a href="../LoginKit/Authenticate.html">Authenticate</a></li><li class="Nav__item "><a href="../LoginKit/Account_Manager.html">Account Manager</a></li><li class="Nav__item "><a href="../LoginKit/Affilate_Partner.html">Affilate Partner</a></li></ul></li></ul>
 <div class="Links">
 <hr/>
 <a href="/sdk-doc/generate/android-source" target="_blank">Android API Reference</a>
@@ -57,16 +57,32 @@
 <div class="Page__header">
 <h1><a href="../LoginKit/Authenticate.html">LoginKit</a> <svg class="Page__header--separator" viewbox="0 0 477.175 477.175" xmlns="http://www.w3.org/2000/svg"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"></path></svg> <a href="../LoginKit/Authenticate.html">Authenticate</a></h1>
 <span style="float: left; font-size: 10px; color: gray;">
-            Wednesday, December 28, 2016 6:37 AM        </span>
+            Wednesday, December 28, 2016 8:34 AM        </span>
 <span style="float: right; font-size: 10px; color: gray;">
 <a href="https://github.com/khang-nt/sdk-doc/blob/master/docs/01_LoginKit/01_Authenticate.md" target="_blank">Edit on GitHub</a>
 </span>
 </div>
 <div class="s-content">
-<p>[TOS]</p>
+<ul class="TableOfContents">
+<li>
+<p><a href="#page_Sign_up_new_account">Sign up new account</a></p>
+</li>
+<li>
+<p><a href="#page_Sign_in_using_email_and_password">Sign in using <em>email</em> and <em>password</em></a></p>
+</li>
+<li>
+<p><a href="#page_Sign_in_using_Facebook_token">Sign in using <em>Facebook</em> token</a></p>
+</li>
+<li>
+<p><a href="#page_Sign_in_using_Google_plus_token">Sign in using <em>Google plus</em> token</a></p>
+</li>
+<li>
+<p><a href="#page_Reset_password_of_account_created_by_email">Reset password of account created by email</a></p>
+</li>
+</ul>
 <h1 id="page_Sign_up_new_account">Sign up new account</h1>
 <hr/>
-<p>You can create new account with <code>email</code>, <code>password</code> and store a specific profile for this account.
+<p>User can create new account with <code>email</code>, <code>password</code> and store a specific profile for this account.
 Try it:</p>
 <ul class='tab'>
 <li><a href="javascript:void(0)" class="tablinks tl0 default_open" onclick="openTab(event, 'tc0', 'android0', 'tl0')">Android</a></li>
@@ -85,23 +101,103 @@ LoginKit.getInstance()
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(accountInfo -&gt; {
             Log.d(TAG, "Register account success: " + accountInfo);
-        }, Throwable::printStackTrace)
+        }, Throwable::printStackTrace);
 </code></pre>
 </div>
 
 
 <div id='ios0' class='tabcontent tc0'>
-<pre><code class="language-swift">
+<pre><code class="language-swift">// updating...
 </code></pre>
 </div>
 
 <p>After User created an account, now they can use it to login, let move to next section.</p>
-<h1 id="page_Sign_in_using_and">Sign in using <code>email</code> and <code>password</code></h1>
+<h1 id="page_Sign_in_using_email_and_password">Sign in using <em>email</em> and <em>password</em></h1>
 <hr/>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl1 default_open" onclick="openTab(event, 'tc1', 'android1', 'tl1')">Android</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl1 " onclick="openTab(event, 'tc1', 'ios1', 'tl1')">IOS</a></li></ul>
+<div id='android1' class='tabcontent tc1'>
+<pre><code class="language-java">LoginKit.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
+        accountInfo -&gt; {
+            Log.d(TAG, "Login success: " + accountInfo);
+        }, Throwable::printStackTrace);
+</code></pre>
+</div>
+
+
+<div id='ios1' class='tabcontent tc1'>
+<pre><code class="language-swift">// updating...
+</code></pre>
+</div>
+
+<p>After that you can manage user's profiles using <a href="Account_Manager.html">AccountManager</a>. <br>
+Beside login using email and password, <code>LoginKit</code> also supports authenticate with social account from <code>Facebook</code> and <code>Google</code>.</br></p>
+<h1 id="page_Sign_in_using_Facebook_token">Sign in using <em>Facebook</em> token</h1>
+<hr/>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl2 default_open" onclick="openTab(event, 'tc2', 'android2', 'tl2')">Android</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl2 " onclick="openTab(event, 'tc2', 'ios2', 'tl2')">IOS</a></li></ul>
+<div id='android2' class='tabcontent tc2'>
+<pre><code class="language-java">LoginKit.getInstance().loginFacebookAccount("place Facebook auth token here",
+        accountInfo -&gt; {
+            Log.d(TAG, "Login using Facebook auth token success: " + accountInfo);
+        }, Throwable::printStackTrace);
+</code></pre>
+</div>
+
+
+<div id='ios2' class='tabcontent tc2'>
+<pre><code class="language-swift">// updating...
+</code></pre>
+</div>
+
+<h1 id="page_Sign_in_using_Google_plus_token">Sign in using <em>Google plus</em> token</h1>
+<hr/>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl3 default_open" onclick="openTab(event, 'tc3', 'android3', 'tl3')">Android</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl3 " onclick="openTab(event, 'tc3', 'ios3', 'tl3')">IOS</a></li></ul>
+<div id='android3' class='tabcontent tc3'>
+<pre><code class="language-java">LoginKit.getInstance().loginGooglePlusAccount("place Google+ auth token here",
+        accountInfo -&gt; {
+            Log.d(TAG, "Login using Google+ auth token success: " + accountInfo);
+        }, Throwable::printStackTrace);
+</code></pre>
+</div>
+
+
+<div id='ios3' class='tabcontent tc3'>
+<pre><code class="language-swift">// updating...
+</code></pre>
+</div>
+
+<h1 id="page_Reset_password_of_account_created_by_email">Reset password of account created by email</h1>
+<hr/>
+<p>Add feature <em>"Reset password"</em> into your app, using <code>LoginKit.resetPassword</code> api:</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl4 default_open" onclick="openTab(event, 'tc4', 'android4', 'tl4')">Android</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl4 " onclick="openTab(event, 'tc4', 'ios4', 'tl4')">IOS</a></li></ul>
+<div id='android4' class='tabcontent tc4'>
+<pre><code class="language-java">LoginKit.getInstance().resetPassword("hello@world.com",
+        () -&gt; {
+            Toast.makeText(this, "Email reset password was sent to your inbox.", Toast.LENGTH_SHORT).show();
+        }, error -&gt; {
+            // encounter an error
+            error.printStackTrace();
+        })
+</code></pre>
+</div>
+
+
+<div id='ios4' class='tabcontent tc4'>
+<pre><code class="language-swift">// updating...
+</code></pre>
+</div>
+
 </div>
 <nav>
 <ul class="Pager">
-<li class="Pager--prev"><a href="../LoginKit/Getting_Started/Android.html">Previous</a></li> <li class="Pager--next"><a href="../LoginKit/Affilate_Partner.html">Next</a></li> </ul>
+<li class="Pager--prev"><a href="../LoginKit/Getting_Started/IOS.html">Previous</a></li> <li class="Pager--next"><a href="../LoginKit/Account_Manager.html">Next</a></li> </ul>
 </nav>
 </article>
 </div>
