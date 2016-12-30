@@ -1,5 +1,9 @@
-Latest version:&nbsp;&nbsp;&nbsp;&nbsp;[![Download](https://api.bintray.com/packages/mstage/mStage-SDK/LoginKit-SDK/images/download.svg) ](https://bintray.com/mstage/mStage-SDK/LoginKit-SDK/_latestVersion)<br>
-Build status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Build status](https://circleci.com/gh/jupitervn/userKit-Android-SDK/tree/master.svg?style=shield&circle-token=0cb9923a82f369171f87d827bbc497e11b495e6d)
+<br>
+<center>
+<a href="https://bintray.com/mstage/mStage-SDK/LoginKit-SDK/_latestVersion"><img src="https://api.bintray.com/packages/mstage/mStage-SDK/LoginKit-SDK/images/download.svg"></img></a>  <img src="https://circleci.com/gh/jupitervn/userKit-Android-SDK/tree/master.svg?style=shield&circle-token=0cb9923a82f369171f87d827bbc497e11b495e6d"></img>
+</center>
+<br>
+
 # Installation
 -------
 #### Gradle:
@@ -44,20 +48,18 @@ public class MainApplication extends Application {
 Logging is disabled by default. To show/hide logs of `LoginKit`, just add some lines to your code:
 ```java
 // import userkit.sdk.identity.Logging;
-    // show log
-    Logging.enable();
-    // hide log
-    Logging.disable();
+// show log
+Logging.enable();
+// hide log
+Logging.disable();
 ```
 ## Java concurrency support using RxJava2:
 ```java
-void doResetPassword(String email) {
-    LoginKit.getInstance().resetPassword(email)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(() -> Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
-                Throwable::printStackTrace);
-}
+LoginKit.getInstance().resetPassword("hello@world.com")
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(() -> Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
+            Throwable::printStackTrace);
 ```
 #### Note:
 > This job won't run until you call `subscribe()`.
@@ -97,7 +99,7 @@ Assume that we are going to create new account with email and password,
 there are some exceptions that we must handle, such as:
   * Email is invalid or already exists.
   * Upload avatar failed due to networking.
-  
+
 Now let see how we can handle it:
 ```java
 LoginKit.getInstance().signUpNewProfile("hello@world.com", "123abc", false, null,

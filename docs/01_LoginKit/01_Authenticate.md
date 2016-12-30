@@ -1,6 +1,6 @@
 [TOC]
 
-# Sign up new account
+## Sign up new account
 -------------
 User can create new account with `email`, `password` and store a specific profile for this account.
 Try it:
@@ -25,7 +25,7 @@ LoginKit.getInstance()
 ```
 After User created an account, now they can use it to login, let move to next section.
 
-# Sign in using _email_ and _password_
+## Sign in using _email_ and _password_
 ----------
 ```java
 LoginKit.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
@@ -38,10 +38,10 @@ LoginKit.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
 ```
 After that you can manage user's profiles using [AccountManager](02_Account_Manager.md). <br>
 Beside login using email and password, `LoginKit` also supports authenticate with social account from `Facebook` and `Google`.
-# Sign in using _Facebook_ token
+## Sign in using _Facebook_ token
 ----------
 ```java
-LoginKit.getInstance().loginFacebookAccount("place Facebook auth token here",
+LoginKit.getInstance().loginFacebookAccount("place Facebook access token here",
         accountInfo -> {
             Log.d(TAG, "Login using Facebook auth token success: " + accountInfo);
         }, Throwable::printStackTrace);
@@ -49,7 +49,7 @@ LoginKit.getInstance().loginFacebookAccount("place Facebook auth token here",
 ```swift
 // updating...
 ```
-# Sign in using _Google plus_ token
+## Sign in using _Google plus_ token
 ---------
 ```java
 LoginKit.getInstance().loginGooglePlusAccount("place Google+ auth token here",
@@ -60,7 +60,7 @@ LoginKit.getInstance().loginGooglePlusAccount("place Google+ auth token here",
 ```swift
 // updating...
 ```
-# Reset password of account created by email
+## Reset password of account created by email
 --------
 Add feature _"Reset password"_ into your app, using `LoginKit.resetPassword` api:
 ```java
