@@ -1,5 +1,5 @@
 # Summary
 
 * [Introduction](README.md)
-* [Tets](generate/android-source/userkit/sdk/identity/api/model/CreateProfileRequest.html)
+* [Tets](docs/01_LoginKit/00_Getting_Started/IOS.md)
 
