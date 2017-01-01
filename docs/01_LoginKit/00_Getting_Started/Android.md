@@ -1,8 +1,6 @@
-<br>
 <center>
 <a href="https://bintray.com/mstage/mStage-SDK/LoginKit-SDK/_latestVersion"><img src="https://api.bintray.com/packages/mstage/mStage-SDK/LoginKit-SDK/images/download.svg"></img></a>  <img src="https://circleci.com/gh/jupitervn/userKit-Android-SDK/tree/master.svg?style=shield&circle-token=0cb9923a82f369171f87d827bbc497e11b495e6d"></img>
 </center>
-<br>
 
 # Installation
 -------
@@ -89,7 +87,7 @@ And the same thing with all API has callback function.
 ## Handling errors
 React with specific `Exception` case is one of the most important parts in programming.
 `LoginKit` make it simply to handle, if the error encountered is:
-  * `IdentityException`: you made a bad request.
+  * `IdentityException`: somethings wrong with your request.
   You can print it into `Logcat` to get more detail. A convenient that you can know exactly
   what sort of error occurred, using `IdentityException.getIdentityError`.
   * `IOException`: maybe due to networking, the connection to server is broken during the request.
