@@ -1,10 +1,12 @@
 {% method %}
+
 ## Sign up new account
 -------------
 User can create new account with `email`, `password` and store a specific profile for this account.
 Try it:
 
 {% sample lang="Android" %}
+
 ```java
 ProfileProperties profileProps = ImmutableProfileProperties.builder()
         .name("John")  
@@ -23,6 +25,7 @@ LoginKit.getInstance()
 ```
 
 {% sample lang="IOS" %}
+
 ```swift
 // updating...
 ```
@@ -56,31 +59,58 @@ LoginKit.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
 After that you can manage user's profiles using [AccountManager](02_Account_Manager.md). <br>
 Beside login using email and password, `LoginKit` also supports authenticate with social account from `Facebook` and `Google`.
 
+{% method %}
+
 ## Sign in using _Facebook_ token
 ----------
+
+{% sample lang="Android" %}
+
 ```java
 LoginKit.getInstance().loginFacebookAccount("place Facebook access token here",
         accountInfo -> {
             Log.d(TAG, "Login using Facebook auth token success: " + accountInfo);
         }, Throwable::printStackTrace);
 ```
+
+{% sample lang="IOS" %}
+
 ```swift
 // updating...
 ```
+
+{% endmethod %}
+
+{% method %}
+
 ## Sign in using _Google plus_ token
 ---------
+
+{% sample lang="Android" %}
+
 ```java
 LoginKit.getInstance().loginGooglePlusAccount("place Google+ auth token here",
         accountInfo -> {
             Log.d(TAG, "Login using Google+ auth token success: " + accountInfo);
         }, Throwable::printStackTrace);
 ```
+
+{% sample lang="IOS" %}
+
 ```swift
 // updating...
 ```
+
+{% endmethod %}
+
+{% method %}
+
 ## Reset password of account created by email
 --------
 Add feature _"Reset password"_ into your app, using `LoginKit.resetPassword` api:
+
+{% sample lang="Android" %}
+
 ```java
 LoginKit.getInstance().resetPassword("hello@world.com",
         () -> {
@@ -90,6 +120,11 @@ LoginKit.getInstance().resetPassword("hello@world.com",
             error.printStackTrace();
         })
 ```
+
+{% sample lang="IOS" %}
+
 ```swift
 // updating...
 ```
+
+{% endmethod %}
