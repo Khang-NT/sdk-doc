@@ -5,7 +5,7 @@
 # Installation
 -------
 #### Gradle:
-```
+```gradle
 repositories {
     jcenter()
 }
