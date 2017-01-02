@@ -1,5 +1,3 @@
-[TOC]
-
 ## Sign up new account
 -------------
 User can create new account with `email`, `password` and store a specific profile for this account.
