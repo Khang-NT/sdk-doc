@@ -32,10 +32,12 @@ LoginKit.getInstance()
 After User created an account, now they can use it to login, let move to next section.
 
 {% method %}
+
 ## Sign in using _email_ and _password_
 ----------
 
 {% sample lang="Android" %}
+
 ```java
 LoginKit.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
         accountInfo -> {
@@ -44,11 +46,13 @@ LoginKit.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
 ```
 
 {% sample lang="IOS" %}
+
 ```swift
 // updating...
 ```
 
 {% endmethod %}
+
 After that you can manage user's profiles using [AccountManager](02_Account_Manager.md). <br>
 Beside login using email and password, `LoginKit` also supports authenticate with social account from `Facebook` and `Google`.
 
