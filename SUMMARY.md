@@ -1,11 +1,10 @@
 # Summary
 
-## Part1
-* [Introduction](README.md)
-* [Tets](docs/01_LoginKit/00_Getting_Started/IOS.md)
-* [Test git book](test-git-book.md)
+# Getting started
 * [Android](docs/01_LoginKit/00_Getting_Started/Android.md)
-* [Header](header.md)
+* [IOS](docs/01_LoginKit/00_Getting_Started/IOS.md)
 
-## bla
-
+# Integration
+* [Authentication](docs/01_LoginKit/01_Authenticate.md)
+   * [Test ID](docs/01_LoginKit/01_Authenticate.md#sign-up-new-account)
+   * [TEST ID 2](docs/01_LoginKit/01_Authenticate.md#reset-password-of-account-created-by-email)

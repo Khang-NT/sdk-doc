@@ -1,5 +1,5 @@
 <center>
-<a href="https://bintray.com/mstage/mStage-SDK/LoginKit-SDK/_latestVersion"><img src="https://api.bintray.com/packages/mstage/mStage-SDK/LoginKit-SDK/images/download.svg"></img></a>  <img src="https://circleci.com/gh/jupitervn/userKit-Android-SDK/tree/master.svg?style=shield&circle-token=0cb9923a82f369171f87d827bbc497e11b495e6d"></img>
+<a href="https://bintray.com/mstage/mStage-SDK/LoginKit-SDK/_latestVersion"><img src="https://api.bintray.com/packages/mstage/mStage-SDK/LoginKit-SDK/images/download.svg"></img></a> <a href="#"><img src="https://circleci.com/gh/jupitervn/userKit-Android-SDK/tree/master.svg?style=shield&circle-token=0cb9923a82f369171f87d827bbc497e11b495e6d"></img></a>
 </center>
 
 # Installation
