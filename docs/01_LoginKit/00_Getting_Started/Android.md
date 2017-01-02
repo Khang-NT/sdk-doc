@@ -40,7 +40,7 @@ public class MainApplication extends Application {
 
 ```
 
-# Basic tutorials
+# Tutorials
 ----------
 ## Logging
 Logging is disabled by default. To show/hide logs of `LoginKit`, just add some lines to your code:

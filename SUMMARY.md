@@ -2,6 +2,8 @@
 
 ### Getting started
 * [Android](docs/01_LoginKit/00_Getting_Started/Android.md)
+  * [Gradle](docs/01_LoginKit/00_Getting_Started/Android.md#installation)
+  * [Tutorials](docs/01_LoginKit/00_Getting_Started/Android.md#tutorials)
 * [IOS](docs/01_LoginKit/00_Getting_Started/IOS.md)
 
 ### Integration
