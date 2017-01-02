@@ -1,4 +1,33 @@
 {
-    "plugins": ["toggle-chapters"],
-    "title": "LoginKit SDK"
+    "plugins": ["toggle-chapters", "theme-api"],
+    "title": "LoginKit SDK",
+    "pluginsConfig": [
+        {
+        "lang": "Android",
+        "name": "Android",
+        "default": true
+    },  {
+        "lang": "IOS",
+        "name": "IOS"
+    }
+    ]
+}
+
+{
+"plugins": [  ],
+"pluginsConfig": {
+"theme-api": {
+"languages": [
+{
+"lang": "js",
+"name": "JavaScript",
+"default": true
+},
+{
+"lang": "go",
+"name": "Go"
+}
+]
+}
+}
 }

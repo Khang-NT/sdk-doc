@@ -3,7 +3,8 @@
 User can create new account with `email`, `password` and store a specific profile for this account.
 Try it:
 {% method %}
-{% sample lang="java" %}
+
+{% sample lang="Android" %}
 ```java
 ProfileProperties profileProps = ImmutableProfileProperties.builder()
         .name("John")  
@@ -20,10 +21,12 @@ LoginKit.getInstance()
             Log.d(TAG, "Register account success: " + accountInfo);
         }, Throwable::printStackTrace);
 ```
-{% sample lang="swift" %}
+
+{% sample lang="IOS" %}
 ```swift
 // updating...
 ```
+
 {% endmethod %}
 
 After User created an account, now they can use it to login, let move to next section.
