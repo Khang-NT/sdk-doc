@@ -1,7 +1,13 @@
 [TOC]
 
 ## Overview
+
+{% method %}
+
 Access `AccountManager` instance:
+
+{% sample lang="Android" %}
+
 ```java
 AccountManager accountManager = LoginKit.getAccountManager();
 ```
@@ -9,11 +15,22 @@ AccountManager accountManager = LoginKit.getAccountManager();
 user already logged in, to check if user logged in or not, use `AccountManager.isLoggedIn()`
 method.
 
+{% sample lang="IOS" %}
+
+Updating...
+
+{% endmethod %}
+
 ## Account profiles
 With `LoginKit`, every account can has multiple profiles. After `user` already logged in,
 you can access all profile of their account.
 
+{% method %}
+
 ### Get all profiles
+
+{% sample lang="Android" %}
+
 ```java
 LoginKit.getAccountManager().getAccountProfiles()
     .flatMap(listProfile -> Observable.from(listProfile))
@@ -24,9 +41,20 @@ LoginKit.getAccountManager().getAccountProfiles()
     }, Throwable::printStackTrace);
 ```
 
+{% sample lang="IOS" %}
+
+Updating...
+
+{% endmethod %}
+
+{% method %}
+
 ### Create new one
 To create new profile for current account, use `AccountManager.createNewProfile()`.
 After profile is created, `LoginKit` uses it as activating profile by default.
+
+{% sample lang="Android" %}
+
 ```java
 // create vip profile for current account.
 ProfileProperties profileProps = ImmutableProfileProperties.builder()
@@ -37,3 +65,9 @@ ProfileProperties profileProps = ImmutableProfileProperties.builder()
 LoginKit.getAccountManager().createNewProfile(profileProps,
         newProfile -> Log.d("CreateProfile", "Success: " + newProfile));
 ```
+
+{% sample lang="IOS" %}
+
+Updating...
+
+{% endmethod %}
