@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview
 
@@ -21,9 +20,9 @@ Updating...
 
 {% endmethod %}
 
-## Account profiles
-With `LoginKit`, every account can have multiple profiles. After `user` already logged in,
-you can access all profile of their account.
+## Managing account profiles
+With `LoginKit`, every account can have multiple profiles. After `user` logged in,
+you can access all profile of their account by using `ProfileManager.getAccountProfiles()`:
 
 {% method %}
 
@@ -49,9 +48,8 @@ Updating...
 
 {% method %}
 
-### Create new one
+### Create new profile
 To create new profile for current account, use `AccountManager.createNewProfile()`.
-After profile is created, `LoginKit` uses it as activating profile by default.
 
 {% sample lang="Android" %}
 
@@ -64,6 +62,29 @@ ProfileProperties profileProps = ImmutableProfileProperties.builder()
 LoginKit.getAccountManager().createNewProfile(profileProps,
         newProfile -> Log.d("CreateProfile", "Success: " + newProfile));
 ```
+After profile is created, `LoginKit` uses it as activating profile by default, you
+can check the current active profile via `AccountManager.getCurrentActiveProfileId()`.
+{% sample lang="IOS" %}
+
+Updating...
+
+{% endmethod %}
+
+{% method %}
+
+### Switch to another profile
+
+Then in case you want to switch to another available profile, `LoginKit` has method
+to switch to any profile with specific `id`.
+
+{% sample lang="Android" %}
+```java
+LoginKit.getAccountManager().switchToProfile("another_profile_id",
+        newAuthToken -> System.out.println(newAuthToken),
+        Throwable::printStackTrace);
+```
+After switching profile succeed, `AccountManager.getCurrentActiveProfileId()` should
+return the value `"another_profile_id"`.
 
 {% sample lang="IOS" %}
 
