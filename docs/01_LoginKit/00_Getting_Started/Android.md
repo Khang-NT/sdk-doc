@@ -35,6 +35,9 @@ again when you [initialize](#initialization) `UserKit` instance.
 Permission `android.permission.INTERNET` is also required.
 
 #### Initialization
+In most case, it makes sense that you should initialize `LoginKit` when your `Application`
+create, and you just add one line to your code:
+
 ```Java
 public class MainApplication extends Application {
     @Override
@@ -51,8 +54,8 @@ public class MainApplication extends Application {
 ----------
 ## Logging
 Print log is useful to debug your app, but strongly recommended that you shouldn't
-show any log in release product. Control `LoginKit` logs is easy, 
-logging is disabled by default. To show/hide logs of `LoginKit`, just add some lines to your code:
+show any log in release product. Logging is disabled by default in `LoginKit`,
+to show/hide logs just add some lines to your code:
 ```java
 // import userkit.sdk.identity.Logging;
 // show log
@@ -61,6 +64,8 @@ Logging.enable();
 Logging.disable();
 ```
 ## Java concurrency support using RxJava2:
+You can observe result and [handle errors](#handling-errors) of all APIs in `LoginKit` SDK
+with [`ReactiveX`](http://reactivex.io/) concept.
 ```java
 LoginKit.getInstance().resetPassword("hello@world.com")
         .subscribeOn(Schedulers.io())
@@ -71,7 +76,8 @@ LoginKit.getInstance().resetPassword("hello@world.com")
 #### Note:
 > This job won't run until you call `subscribe()`.
 
-If you want to run the request immediately and ignore the result, try it:
+If you want to run the request immediately and ignore the result, you can subscribe
+without specify any callback.
 ```java
 LoginKit.getInstance().resetPassword(email)
         .subscribeOn(Schedulers.io())
