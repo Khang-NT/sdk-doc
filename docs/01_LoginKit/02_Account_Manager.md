@@ -22,7 +22,7 @@ Updating...
 {% endmethod %}
 
 ## Account profiles
-With `LoginKit`, every account can has multiple profiles. After `user` already logged in,
+With `LoginKit`, every account can have multiple profiles. After `user` already logged in,
 you can access all profile of their account.
 
 {% method %}
@@ -59,7 +59,6 @@ After profile is created, `LoginKit` uses it as activating profile by default.
 // create vip profile for current account.
 ProfileProperties profileProps = ImmutableProfileProperties.builder()
         .name("John")  
-        .avatar(avatarFile)
         .putProperties("account_type", "vip_account")
         .build();
 LoginKit.getAccountManager().createNewProfile(profileProps,
