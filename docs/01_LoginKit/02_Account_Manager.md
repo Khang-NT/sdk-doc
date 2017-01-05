@@ -117,3 +117,46 @@ LoginKit.getAccountManager().updateProfile(profileProps)
 Updating...
 
 {% endmethod %}
+
+{% method %}
+
+### Delete profile
+In addition of [create profile](#create-new-profile) and [update profile](#update-profile),
+you can delete profile of an account by using `deleteProfile`.
+
+{% sample lang="Android" %}
+
+Method requires a specific `ID` of profile to be deleted.
+```java
+LoginKit.getAccountManager().deleteProfile("profile_id",
+        () -> Log.d("DeleteProfile", "Delete profile succeed"),
+        Throwable::printStackTrace);
+```
+
+{% sample lang="IOS" %}
+
+Updating...
+
+{% endmethod %}
+
+
+{% method %}
+
+### Change password
+Change password is an important feature to help User protect their account,
+`AccountManager` provides API to change password of current account, remind
+again that `AccountManager` only works with the account currently logged in. <br><br>
+
+User also need to present their old password if they want to change password,
+it's because of security reason.
+
+{% sample lang="Android" %}
+You will get error if old password is not match, or new password invalid,...
+To handle these exceptions, see [Handling errors](00_Getting_Started/Android.md#handling-errors).
+```java
+LoginKit.getAccountManager().changePassword("old_password", "new_password")
+        .subscribe(
+            () -> Toast.makeText(getContext(), "Change password succeed, now you can login with new password"),
+            error -> handleError(error);    // handle errors
+        );
+```
