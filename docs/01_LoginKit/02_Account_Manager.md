@@ -151,6 +151,7 @@ User also need to present their old password if they want to change password,
 it's because of security reason.
 
 {% sample lang="Android" %}
+
 You will get error if old password is not match, or new password invalid,...
 To handle these exceptions, see [Handling errors](00_Getting_Started/Android.md#handling-errors).
 ```java
@@ -160,3 +161,9 @@ LoginKit.getAccountManager().changePassword("old_password", "new_password")
             error -> handleError(error);    // handle errors
         );
 ```
+
+{% sample lang="IOS" %}
+
+Updating...
+
+{% endmethod %}
