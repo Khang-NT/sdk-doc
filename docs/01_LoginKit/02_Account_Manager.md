@@ -112,6 +112,13 @@ LoginKit.getAccountManager().updateProfile(profileProps)
             Throwable::printStackTrace);
 ```
 
+If you only want to update avatar of current account, you can use `updateAvatar()` method, try it:
+```java
+LoginKit.getAccountManager().updateAvatar(new File("/path/to/new/avatar"),
+        imageInfoList -> System.out.println(imageInfoList),
+        Throwable::printStackTrace)
+```
+
 {% sample lang="IOS" %}
 
 Updating...
@@ -139,10 +146,10 @@ Updating...
 
 {% endmethod %}
 
+## Change password
 
 {% method %}
 
-### Change password
 Change password is an important feature to help User protect their account,
 `AccountManager` provides API to change password of current account, remind
 again that `AccountManager` only works with the account currently logged in. <br><br>
