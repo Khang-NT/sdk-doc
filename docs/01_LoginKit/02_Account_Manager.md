@@ -91,3 +91,29 @@ return the value `"another_profile_id"`.
 Updating...
 
 {% endmethod %}
+
+{% method %}
+
+### Update profile
+Update profile is essential when User want to update some property such as avatar, name.
+
+{% sample lang="Android" %}
+
+Like [create profile](#create-new-profile), you can specify an `ProfileProperties`
+to update current activate profile.
+```java
+ProfileProperties profileProps = ImmutableProfileProperties.builder()
+        .name("New name")  
+        .avatar(new File("/path/to/new/avatar"))
+        .build();
+LoginKit.getAccountManager().updateProfile(profileProps)
+        .subscribe(
+            accountProfile -> Log.d("UpdateProfile", accountProfile.toString()),
+            Throwable::printStackTrace);
+```
+
+{% sample lang="IOS" %}
+
+Updating...
+
+{% endmethod %}
