@@ -5,6 +5,9 @@
 # Installation
 -------
 #### Gradle:
+Place `LoginKit` dependency into your `build.gradle` in app module and make sure that `jcenter()`
+is added to `repositories` section at project level `build.gradle` file.
+
 ```gradle
 repositories {
     jcenter()
@@ -15,6 +18,9 @@ dependencies {
 ```
 
 #### AndroidManifest.xml
+It is optional step, that `UserKit` will find `USER_KIT_API_TOKEN`meta data
+in `AndroidManifest.xml` file, then you needn't to specify `USER_KIT_API_TOKEN`
+again when you [initialize](#initialization) `UserKit` instance.
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET"/>
@@ -26,6 +32,7 @@ dependencies {
 
 </application>
 ```
+Permission `android.permission.INTERNET` is also required.
 
 #### Initialization
 ```Java
@@ -43,7 +50,9 @@ public class MainApplication extends Application {
 # Tutorials
 ----------
 ## Logging
-Logging is disabled by default. To show/hide logs of `LoginKit`, just add some lines to your code:
+Print log is useful to debug your app, but strongly recommended that you shouldn't
+show any log in release product. Control `LoginKit` logs is easy, 
+logging is disabled by default. To show/hide logs of `LoginKit`, just add some lines to your code:
 ```java
 // import userkit.sdk.identity.Logging;
 // show log
