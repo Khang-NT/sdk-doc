@@ -1,6 +1,6 @@
 {
     "plugins": ["toggle-chapters", "theme-api"],
-    "title": "LoginKit SDK",
+    "title": "UserKIt Identity SDK",
     "pluginsConfig": {
         "theme-api": {
             "languages": [
