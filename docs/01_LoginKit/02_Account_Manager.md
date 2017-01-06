@@ -8,7 +8,7 @@ Access `AccountManager` instance:
 {% sample lang="Android" %}
 
 ```java
-AccountManager accountManager = LoginKit.getAccountManager();
+AccountManager accountManager = UserKitIdentity.getAccountManager();
 ```
 > **Notice that** to use apis under `AccountManager`, you must ensure that
 user already logged in, to check if user logged in or not, use `AccountManager.isLoggedIn()`
@@ -21,7 +21,7 @@ Updating...
 {% endmethod %}
 
 ## Managing account profiles
-With `LoginKit`, every account can have multiple profiles. After `user` logged in,
+With `UserKitIdentity`, every account can have multiple profiles. After `user` logged in,
 you can access all profile of their account by using `ProfileManager.getAccountProfiles()`:
 
 {% method %}
@@ -31,7 +31,7 @@ you can access all profile of their account by using `ProfileManager.getAccountP
 {% sample lang="Android" %}
 
 ```java
-LoginKit.getAccountManager().getAccountProfiles()
+UserKitIdentity.getAccountManager().getAccountProfiles()
     .flatMap(listProfile -> Observable.from(listProfile))
     .subscribeOn(Schedulers.io())
     .subscribe(profile -> {
@@ -59,10 +59,10 @@ ProfileProperties profileProps = ImmutableProfileProperties.builder()
         .name("John")  
         .putProperties("account_type", "vip_account")
         .build();
-LoginKit.getAccountManager().createNewProfile(profileProps,
+UserKitIdentity.getAccountManager().createNewProfile(profileProps,
         newProfile -> Log.d("CreateProfile", "Success: " + newProfile));
 ```
-After profile is created, `LoginKit` uses it as activating profile by default, you
+After profile is created, `UserKitIdentity` uses it as activating profile by default, you
 can check the current active profile via `AccountManager.getCurrentActiveProfileId()`.
 {% sample lang="IOS" %}
 
@@ -74,12 +74,12 @@ Updating...
 
 ### Switch to another profile
 
-Then in case you want to switch to another available profile, `LoginKit` has method
+Then in case you want to switch to another available profile, `UserKitIdentity` has method
 to switch to any profile with specific `id`.
 
 {% sample lang="Android" %}
 ```java
-LoginKit.getAccountManager().switchToProfile("another_profile_id",
+UserKitIdentity.getAccountManager().switchToProfile("another_profile_id",
         newAuthToken -> System.out.println(newAuthToken),
         Throwable::printStackTrace);
 ```
@@ -106,7 +106,7 @@ ProfileProperties profileProps = ImmutableProfileProperties.builder()
         .name("New name")  
         .avatar(new File("/path/to/new/avatar"))
         .build();
-LoginKit.getAccountManager().updateProfile(profileProps)
+UserKitIdentity.getAccountManager().updateProfile(profileProps)
         .subscribe(
             accountProfile -> Log.d("UpdateProfile", accountProfile.toString()),
             Throwable::printStackTrace);
@@ -114,7 +114,7 @@ LoginKit.getAccountManager().updateProfile(profileProps)
 
 If you only want to update avatar of current account, you can use `updateAvatar()` method, try it:
 ```java
-LoginKit.getAccountManager().updateAvatar(new File("/path/to/new/avatar"),
+UserKitIdentity.getAccountManager().updateAvatar(new File("/path/to/new/avatar"),
         imageInfoList -> System.out.println(imageInfoList),
         Throwable::printStackTrace)
 ```
@@ -135,7 +135,7 @@ you can delete profile of an account by using `deleteProfile`.
 
 Method requires a specific `ID` of profile to be deleted.
 ```java
-LoginKit.getAccountManager().deleteProfile("profile_id",
+UserKitIdentity.getAccountManager().deleteProfile("profile_id",
         () -> Log.d("DeleteProfile", "Delete profile succeed"),
         Throwable::printStackTrace);
 ```
@@ -162,7 +162,7 @@ it's because of security reason.
 You will get error if old password is not match, or new password invalid,...
 To handle these exceptions, see [Handling errors](00_Getting_Started/Android.md#handling-errors).
 ```java
-LoginKit.getAccountManager().changePassword("old_password", "new_password")
+UserKitIdentity.getAccountManager().changePassword("old_password", "new_password")
         .subscribe(
             () -> Toast.makeText(getContext(), "Change password succeed, now you can login with new password"),
             error -> handleError(error);    // handle errors

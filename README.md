@@ -1,2 +1,2 @@
-# LoginKit SDK Documentation
+# UserKit Identity SDK
 Place some demo here.

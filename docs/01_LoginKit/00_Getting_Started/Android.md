@@ -5,7 +5,7 @@
 # Installation
 -------
 #### Gradle:
-Place `LoginKit` dependency into your `build.gradle` in app module and make sure that `jcenter()`
+Place `UserKitIdentity` dependency into your `build.gradle` in app module and make sure that `jcenter()`
 is added to `repositories` section at project level `build.gradle` file.
 
 ```gradle
@@ -35,15 +35,15 @@ again when you [initialize](#initialization) `UserKit` instance.
 Permission `android.permission.INTERNET` is also required.
 
 #### Initialization
-In most case, it makes sense that you should initialize `LoginKit` when your `Application`
+In most case, it makes sense that you should initialize `UserKitIdentity` when your `Application`
 create, and you just add one line to your code:
 
 ```Java
 public class MainApplication extends Application {
     @Override
     public void onCreate() {
-        LoginKit.init(this);
-        // Or LoginKit.init(Context, USER_KIT_API_TOKEN)
+        UserKitIdentity.init(this);
+        // Or UserKitIdentity.init(Context, USER_KIT_API_TOKEN)
         // In case you haven't defined api token in AndroidManifest.xml
     }
 }
@@ -54,7 +54,7 @@ public class MainApplication extends Application {
 ----------
 ## Logging
 Print log is useful to debug your app, but strongly recommended that you shouldn't
-show any log in release product. Logging is disabled by default in `LoginKit`,
+show any log in release product. Logging is disabled by default in `UserKitIdentity`,
 to show/hide logs just add some lines to your code:
 ```java
 // import userkit.sdk.identity.Logging;
@@ -64,10 +64,10 @@ Logging.enable();
 Logging.disable();
 ```
 ## Java concurrency support using RxJava2:
-You can observe result and [handle errors](#handling-errors) of all APIs in `LoginKit` SDK
+You can observe result and [handle errors](#handling-errors) of all APIs in `UserKitIdentity` SDK
 with [`ReactiveX`](http://reactivex.io/) concept.
 ```java
-LoginKit.getInstance().resetPassword("hello@world.com")
+UserKitIdentity.getInstance().resetPassword("hello@world.com")
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(() -> Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
@@ -79,7 +79,7 @@ LoginKit.getInstance().resetPassword("hello@world.com")
 If you want to run the request immediately and ignore the result, you can subscribe
 without specify any callback.
 ```java
-LoginKit.getInstance().resetPassword(email)
+UserKitIdentity.getInstance().resetPassword(email)
         .subscribeOn(Schedulers.io())
         .subscribe();
 ```
@@ -90,7 +90,7 @@ If you don't like `Observer` pattern, you can easily define callback functions
 which was designed to friendly with Java 8 Lambda expression:
 ```java
 void doResetPassword(String email) {
-    LoginKit.getInstance().resetPassword(email,
+    UserKitIdentity.getInstance().resetPassword(email,
         () -> Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
         Throwable::printStackTrace);
 }
@@ -101,7 +101,7 @@ void doResetPassword(String email) {
 And the same thing with all API has callback function.
 ## Handling errors
 React with specific `Exception` case is one of the most important parts in programming.
-`LoginKit` make it simply to handle, if the error encountered is:
+`UserKitIdentity` make it simply to handle, if the error encountered is:
   * `IdentityException`: somethings wrong with your request.
   You can print it into `Logcat` to get more detail. A convenient that you can know exactly
   what sort of error occurred, using `IdentityException.getIdentityError`.
@@ -115,7 +115,7 @@ there are some exceptions that we must handle, such as:
 
 Now let see how we can handle it:
 ```java
-LoginKit.getInstance().signUpNewProfile("hello@world.com", "123abc", false, null,
+UserKitIdentity.getInstance().signUpNewProfile("hello@world.com", "123abc", false, null,
         accountInfo -> {
             Log.d(TAG, "Register account success: " + accountInfo);
         },

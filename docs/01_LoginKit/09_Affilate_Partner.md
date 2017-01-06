@@ -2,12 +2,12 @@
 ----------
 Get list of affiliate partner. In case success, it will return a list of Affiliate Partner.
 ```java
-LoginKit.getInstance().getAffiliates(affiliateList -> {
+UserKitIdentity.getInstance().getAffiliates(affiliateList -> {
     Log.d("AffiliateList", affiliateList);
 }, Throwable::printStackTrace);
 ```
 ```swift
-LoginKit.mainInstance().getAffiliates({
+UserKitIdentity.mainInstance().getAffiliates({
     partnerList in print(partnerList?.affiliates)
     }, failureBlock: {
         error in print(error?.message)
@@ -33,14 +33,14 @@ view.addSubview(oAuthWebView)
 # Sign up account for affiliate partner
 -------
 ```java
-LoginKit.getInstance().affiliateSignUp("TestName", "testKaiwei@gmail.com", "12345678", token,
+UserKitIdentity.getInstance().affiliateSignUp("TestName", "testKaiwei@gmail.com", "12345678", token,
                                         accountInfo -> {
                                             Log.d("Token", accountInfo.token);
                                             Log.d("RefreshToken", accountInfo.refreshToken);
                                         }, Throwable::printStackTrace)
 ```
 ```swift
-LoginKit.loginInstance.signUpAffiliateAccount("TestName", email: "testKaiwei@gmail.com", password: "12345678", registerToken: token, successBlock: { model in
+UserKitIdentity.loginInstance.signUpAffiliateAccount("TestName", email: "testKaiwei@gmail.com", password: "12345678", registerToken: token, successBlock: { model in
             print(model!.authToken)
             print(model!.registerToken)
         }, failureBlock: { error in

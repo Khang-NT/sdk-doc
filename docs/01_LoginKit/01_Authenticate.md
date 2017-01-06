@@ -15,7 +15,7 @@ ProfileProperties profileProps = ImmutableProfileProperties.builder()
         .putProperties("is_male", true)
         .putProperties("age", 21)
         .build();
-LoginKit.getInstance()
+UserKitIdentity.getInstance()
         .signUpNewProfile("hello@world.com", "123abc", false, profileProps)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -42,7 +42,7 @@ After User created an account, now they can use it to login, let move to next se
 {% sample lang="Android" %}
 
 ```java
-LoginKit.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
+UserKitIdentity.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
         accountInfo -> {
             Log.d(TAG, "Login success: " + accountInfo);
         }, Throwable::printStackTrace);
@@ -57,7 +57,7 @@ LoginKit.getInstance().loginWithEmailAndPassword("hello@world.com", "123abc",
 {% endmethod %}
 
 After that you can manage user's profiles using [AccountManager](02_Account_Manager.md). <br>
-Beside login using email and password, `LoginKit` also supports authenticate with social account from `Facebook` and `Google`.
+Beside login using email and password, `UserKitIdentity` also supports authenticate with social account from `Facebook` and `Google`.
 
 {% method %}
 
@@ -67,7 +67,7 @@ Beside login using email and password, `LoginKit` also supports authenticate wit
 {% sample lang="Android" %}
 
 ```java
-LoginKit.getInstance().loginFacebookAccount("place Facebook access token here",
+UserKitIdentity.getInstance().loginFacebookAccount("place Facebook access token here",
         accountInfo -> {
             Log.d(TAG, "Login using Facebook auth token success: " + accountInfo);
         }, Throwable::printStackTrace);
@@ -89,7 +89,7 @@ LoginKit.getInstance().loginFacebookAccount("place Facebook access token here",
 {% sample lang="Android" %}
 
 ```java
-LoginKit.getInstance().loginGooglePlusAccount("place Google+ auth token here",
+UserKitIdentity.getInstance().loginGooglePlusAccount("place Google+ auth token here",
         accountInfo -> {
             Log.d(TAG, "Login using Google+ auth token success: " + accountInfo);
         }, Throwable::printStackTrace);
@@ -107,12 +107,12 @@ LoginKit.getInstance().loginGooglePlusAccount("place Google+ auth token here",
 
 ## Reset password of account created by email
 --------
-Add feature _"Reset password"_ into your app, using `LoginKit.resetPassword` api:
+Add feature _"Reset password"_ into your app, using `UserKitIdentity.resetPassword` api:
 
 {% sample lang="Android" %}
 
 ```java
-LoginKit.getInstance().resetPassword("hello@world.com",
+UserKitIdentity.getInstance().resetPassword("hello@world.com",
         () -> {
             Toast.makeText(this, "Email reset password was sent to your inbox.", Toast.LENGTH_SHORT).show();
         }, error -> {
