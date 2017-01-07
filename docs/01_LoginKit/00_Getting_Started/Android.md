@@ -18,9 +18,9 @@ dependencies {
 ```
 
 #### AndroidManifest.xml
-It is optional step, that `UserKit` will find `USER_KIT_API_TOKEN`meta data
+It is optional step, that `UserKitIdentity` will find `USER_KIT_API_TOKEN`meta data
 in `AndroidManifest.xml` file, then you needn't to specify `USER_KIT_API_TOKEN`
-again when you [initialize](#initialization) `UserKit` instance.
+again when you [initialize](#initialization) `UserKitIdentity` instance.
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET"/>
