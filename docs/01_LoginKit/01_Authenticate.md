@@ -27,7 +27,13 @@ UserKitIdentity.getInstance()
 {% sample lang="IOS" %}
 
 ```swift
-// updating...
+let profile = UserKitIdentityProfile(json: ["name": "John", "avatar": avatarFile, "account_type": "free", "is_male": true, "age": 21])
+UserKitIdentity.mainInstance().signUpNewProfile("hello@world.com", password: "123abc", profile: profile, customProperties: [:], successBlock: { authenticationModel in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
+
 ```
 
 {% endmethod %}
