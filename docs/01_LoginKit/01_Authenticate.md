@@ -59,7 +59,7 @@ UserKitIdentity.getInstance().loginWithEmailAndPassword("hello@world.com", "123a
 ```swift
 UserKitIdentity.mainInstance().loginWithEmailAndPassword("hello@world.com", password: "123abc", successBlock: { authenticationModel in
         //your code
-}, failureBlock:  { autheticationErrorModel in
+}, failureBlock: { autheticationErrorModel in
         //your code
 })
 ```
@@ -86,7 +86,11 @@ UserKitIdentity.getInstance().loginFacebookAccount("place Facebook access token 
 {% sample lang="IOS" %}
 
 ```swift
-// updating...
+UserKitIdentity.mainInstance().loginFacebookAccount("place Facebook access token here", successBlock: { authenticationModel in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
 ```
 
 {% endmethod %}
@@ -108,7 +112,11 @@ UserKitIdentity.getInstance().loginGooglePlusAccount("place Google+ auth token h
 {% sample lang="IOS" %}
 
 ```swift
-// updating...
+UserKitIdentity.mainInstance().loginGooglePlusAccount("place Google+ auth token here", successBlock: { authenticationModel in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
 ```
 
 {% endmethod %}
@@ -134,7 +142,11 @@ UserKitIdentity.getInstance().resetPassword("hello@world.com",
 {% sample lang="IOS" %}
 
 ```swift
-// updating...
+UserKitIdentity.mainInstance().resetPassword("hello@world.com", successBlock: { authenticationModel in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
 ```
 
 {% endmethod %}
