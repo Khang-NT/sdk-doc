@@ -16,7 +16,9 @@ method.
 
 {% sample lang="IOS" %}
 
-Updating...
+```swift
+let profileManager = UserKitIdentity.mainInstance().profileManager
+```
 
 {% endmethod %}
 
@@ -42,7 +44,13 @@ UserKitIdentity.getAccountManager().getAccountProfiles()
 
 {% sample lang="IOS" %}
 
-Updating...
+```swift
+UserKitIdentity.mainInstance().profileManager.getProfile({ listProfile in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
+```
 
 {% endmethod %}
 
@@ -66,7 +74,14 @@ After profile is created, `UserKitIdentity` uses it as activating profile by def
 can check the current active profile via `AccountManager.getCurrentActiveProfileId()`.
 {% sample lang="IOS" %}
 
-Updating...
+```swift
+let profile = UserKitIdentityProfile(json: ["name": "John", "account_type": "vip_account"])!
+UserKitIdentity.mainInstance().profileManager.createProfile(profile, customProperties: [:], successBlock: { listProfile in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
+```
 
 {% endmethod %}
 
@@ -88,7 +103,13 @@ return the value `"another_profile_id"`.
 
 {% sample lang="IOS" %}
 
-Updating...
+```swift
+UserKitIdentity.mainInstance().profileManager.switchProfile("another_profile_id", successBlock: { newAuthToken in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
+```
 
 {% endmethod %}
 
@@ -121,7 +142,13 @@ UserKitIdentity.getAccountManager().updateAvatar(new File("/path/to/new/avatar")
 
 {% sample lang="IOS" %}
 
-Updating...
+```swift
+UserKitIdentity.mainInstance().profileManager.updateProfile(profileId, customProperties: ["name": "New name", "avatar" : newAvatarFile], successBlock: { profile in
+        //your code
+}, failureBlock: { authenticationErrorModel in
+        //your code
+})
+```
 
 {% endmethod %}
 
@@ -142,7 +169,13 @@ UserKitIdentity.getAccountManager().deleteProfile("profile_id",
 
 {% sample lang="IOS" %}
 
-Updating...
+```swift
+UserKitIdentity.mainInstance().profileManager.deleteProfile(profileId, successBlock: { resultDictionary in
+        //your code
+}, failureBlock: { authenticationErrorModel in
+        //your code
+})
+```
 
 {% endmethod %}
 
@@ -171,6 +204,12 @@ UserKitIdentity.getAccountManager().changePassword("old_password", "new_password
 
 {% sample lang="IOS" %}
 
-Updating...
+```swift
+UserKitIdentity.mainInstance().profileManager.changePassword("old_passord", newPassword: "new_password", successBlock: { object in
+        //your code
+}, failureBlock: { authenticationErrorModel in
+        //your code
+})
+```
 
 {% endmethod %}
