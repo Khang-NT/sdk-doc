@@ -57,7 +57,11 @@ UserKitIdentity.getInstance().loginWithEmailAndPassword("hello@world.com", "123a
 {% sample lang="IOS" %}
 
 ```swift
-// updating...
+UserKitIdentity.mainInstance().loginWithEmailAndPassword("hello@world.com", password: "123abc", successBlock: { authenticationModel in
+        //your code
+}, failureBlock:  { autheticationErrorModel in
+        //your code
+})
 ```
 
 {% endmethod %}
