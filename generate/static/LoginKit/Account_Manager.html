@@ -57,50 +57,47 @@
 <div class="Page__header">
 <h1><a href="../LoginKit/Authenticate.html">LoginKit</a> <svg class="Page__header--separator" viewbox="0 0 477.175 477.175" xmlns="http://www.w3.org/2000/svg"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"></path></svg> <a href="../LoginKit/Account_Manager.html">Account Manager</a></h1>
 <span style="float: left; font-size: 10px; color: gray;">
-            Thursday, December 29, 2016 11:52 PM        </span>
+            Thursday, February 9, 2017 1:47 AM        </span>
 <span style="float: right; font-size: 10px; color: gray;">
 <a href="https://github.com/khang-nt/sdk-doc/blob/master/docs/01_LoginKit/02_Account_Manager.md" target="_blank">Edit on GitHub</a>
 </span>
 </div>
 <div class="s-content">
-<ul class="TableOfContents">
-<li>
-<p><a href="#page_Overview">Overview</a></p>
-</li>
-<li>
-<p><a href="#page_Account_profiles">Account profiles</a></p>
-<ul class="TableOfContents">
-<li>
-<p><a href="#page_Get_all_profiles">Get all profiles</a></p>
-</li>
-<li>
-<p><a href="#page_Create_new_one">Create new one</a></p>
-</li>
-</ul>
-</li>
-</ul>
 <h2 id="page_Overview">Overview</h2>
+<p>{% method %}</p>
 <p>Access <code>AccountManager</code> instance:</p>
+<p>{% sample lang="Android" %}</p>
 <ul class='tab'>
 <li><a href="javascript:void(0)" class="tablinks tl0 default_open" onclick="openTab(event, 'tc0', 'android0', 'tl0')">Android</a></li></ul>
 <div id='android0' class='tabcontent tc0'>
-<pre><code class="language-java">AccountManager accountManager = LoginKit.getAccountManager();
+<pre><code class="language-java">AccountManager accountManager = UserKitIdentity.getAccountManager();
 </code></pre>
 </div>
 
 <blockquote>
-<p><strong>Notice that</strong> to use apis under account manager, you must ensure that
+<p><strong>Notice that</strong> to use apis under <code>AccountManager</code>, you must ensure that
 user already logged in, to check if user logged in or not, use <code>AccountManager.isLoggedIn()</code>
 method.</p>
 </blockquote>
-<h2 id="page_Account_profiles">Account profiles</h2>
-<p>With <code>LoginKit</code>, every account can has multiple profiles. After <code>user</code> already logged in,
-you can access all profile of their account.</p>
-<h3 id="page_Get_all_profiles">Get all profiles</h3>
+<p>{% sample lang="IOS" %}</p>
 <ul class='tab'>
-<li><a href="javascript:void(0)" class="tablinks tl1 default_open" onclick="openTab(event, 'tc1', 'android1', 'tl1')">Android</a></li></ul>
+<li><a href="javascript:void(0)" class="tablinks tl1 default_open" onclick="openTab(event, 'tc1', 'ios1', 'tl1')">IOS</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl1 " onclick="openTab(event, 'tc1', 'android1', 'tl1')">Android</a></li></ul>
+<div id='ios1' class='tabcontent tc1'>
+<pre><code class="language-swift">let profileManager = UserKitIdentity.mainInstance().profileManager
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
+<h2 id="page_Managing+account+profiles">Managing account profiles</h2>
+<p>With <code>UserKitIdentity</code>, every account can have multiple profiles. After <code>user</code> logged in,
+you can access all profile of their account by using <code>ProfileManager.getAccountProfiles()</code>:</p>
+<p>{% method %}</p>
+<h3 id="page_Get+all+profiles">Get all profiles</h3>
+<p>{% sample lang="Android" %}</p>
+
 <div id='android1' class='tabcontent tc1'>
-<pre><code class="language-java">LoginKit.getAccountManager().getAccountProfiles()
+<pre><code class="language-java">UserKitIdentity.getAccountManager().getAccountProfiles()
     .flatMap(listProfile -&gt; Observable.from(listProfile))
     .subscribeOn(Schedulers.io())
     .subscribe(profile -&gt; {
@@ -110,23 +107,218 @@ you can access all profile of their account.</p>
 </code></pre>
 </div>
 
-<h3 id="page_Create_new_one">Create new one</h3>
-<p>To create new profile for current account, use <code>AccountManager.createNewProfile()</code>.
-After profile is created, <code>LoginKit</code> uses it as activating profile by default.</p>
+<p>{% sample lang="IOS" %}</p>
 <ul class='tab'>
-<li><a href="javascript:void(0)" class="tablinks tl2 default_open" onclick="openTab(event, 'tc2', 'android2', 'tl2')">Android</a></li></ul>
+<li><a href="javascript:void(0)" class="tablinks tl2 default_open" onclick="openTab(event, 'tc2', 'ios2', 'tl2')">IOS</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl2 " onclick="openTab(event, 'tc2', 'android2', 'tl2')">Android</a></li></ul>
+<div id='ios2' class='tabcontent tc2'>
+<pre><code class="language-swift">UserKitIdentity.mainInstance().profileManager.getProfile({ listProfile in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
+<p>{% method %}</p>
+<h3 id="page_Create+new+profile">Create new profile</h3>
+<p>To create new profile for current account, use <code>AccountManager.createNewProfile()</code>.</p>
+<p>{% sample lang="Android" %}</p>
+
 <div id='android2' class='tabcontent tc2'>
 <pre><code class="language-java">// create vip profile for current account.
 ProfileProperties profileProps = ImmutableProfileProperties.builder()
         .name("John")  
-        .avatar(avatarFile)
         .putProperties("account_type", "vip_account")
         .build();
-LoginKit.getAccountManager().createNewProfile(profileProps,
+UserKitIdentity.getAccountManager().createNewProfile(profileProps,
         newProfile -&gt; Log.d("CreateProfile", "Success: " + newProfile));
 </code></pre>
 </div>
 
+<p>After profile is created, <code>UserKitIdentity</code> uses it as activating profile by default, you
+can check the current active profile via <code>AccountManager.getCurrentActiveProfileId()</code>.
+{% sample lang="IOS" %}</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl3 default_open" onclick="openTab(event, 'tc3', 'ios3', 'tl3')">IOS</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl3 " onclick="openTab(event, 'tc3', 'android3', 'tl3')">Android</a></li></ul>
+<div id='ios3' class='tabcontent tc3'>
+<pre><code class="language-swift">let profile = UserKitIdentityProfile(json: ["name": "John", "account_type": "vip_account"])!
+UserKitIdentity.mainInstance().profileManager.createProfile(profile, customProperties: [:], successBlock: { listProfile in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
+<p>{% method %}</p>
+<h3 id="page_Switch+to+another+profile">Switch to another profile</h3>
+<p>Then in case you want to switch to another available profile, <code>UserKitIdentity</code> has method
+to switch to any profile with specific <code>id</code>.</p>
+<p>{% sample lang="Android" %}</p>
+
+<div id='android3' class='tabcontent tc3'>
+<pre><code class="language-java">UserKitIdentity.getAccountManager().switchToProfile("another_profile_id",
+        newAuthToken -&gt; System.out.println(newAuthToken),
+        Throwable::printStackTrace);
+</code></pre>
+</div>
+
+<p>After switching profile succeed, <code>AccountManager.getCurrentActiveProfileId()</code> should
+return the value <code>"another_profile_id"</code>.</p>
+<p>{% sample lang="IOS" %}</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl4 default_open" onclick="openTab(event, 'tc4', 'ios4', 'tl4')">IOS</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl4 " onclick="openTab(event, 'tc4', 'android4', 'tl4')">Android</a></li></ul>
+<div id='ios4' class='tabcontent tc4'>
+<pre><code class="language-swift">UserKitIdentity.mainInstance().profileManager.switchProfile("another_profile_id", successBlock: { newAuthToken in
+        //your code
+}, failureBlock: { autheticationErrorModel in
+        //your code
+})
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
+<p>{% method %}</p>
+<h3 id="page_Update+profile">Update profile</h3>
+<p>Update profile is essential when User want to update some property such as avatar, name.</p>
+<p>{% sample lang="Android" %}</p>
+<p>Like <a href="#create-new-profile">create profile</a>, you can specify an <code>ProfileProperties</code>
+to update current activate profile.</p>
+
+<div id='android4' class='tabcontent tc4'>
+<pre><code class="language-java">ProfileProperties profileProps = ImmutableProfileProperties.builder()
+        .name("New name")  
+        .avatar(new File("/path/to/new/avatar"))
+        .build();
+UserKitIdentity.getAccountManager().updateProfile(profileProps)
+        .subscribe(
+            accountProfile -&gt; Log.d("UpdateProfile", accountProfile.toString()),
+            Throwable::printStackTrace);
+</code></pre>
+</div>
+
+<p>If you only want to update avatar of current account, you can use <code>updateAvatar()</code> method, try it:</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl5 default_open" onclick="openTab(event, 'tc5', 'android5', 'tl5')">Android</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl5 " onclick="openTab(event, 'tc5', 'ios5', 'tl5')">IOS</a></li></ul>
+<div id='android5' class='tabcontent tc5'>
+<pre><code class="language-java">UserKitIdentity.getAccountManager().updateAvatar(new File("/path/to/new/avatar"),
+        imageInfoList -&gt; System.out.println(imageInfoList),
+        Throwable::printStackTrace)
+</code></pre>
+</div>
+
+<p>{% sample lang="IOS" %}</p>
+
+<div id='ios5' class='tabcontent tc5'>
+<pre><code class="language-swift">UserKitIdentity.mainInstance().profileManager.updateProfile(profileId, customProperties: ["name": "New name", "avatar" : newAvatarFile], successBlock: { profile in
+        //your code
+}, failureBlock: { authenticationErrorModel in
+        //your code
+})
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
+<p>{% method %}</p>
+<h3 id="page_Delete+profile">Delete profile</h3>
+<p>In addition of <a href="#create-new-profile">create profile</a> and <a href="#update-profile">update profile</a>,
+you can delete profile of an account by using <code>deleteProfile</code>.</p>
+<p>{% sample lang="Android" %}</p>
+<p>Method requires a specific <code>ID</code> of profile to be deleted.</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl6 default_open" onclick="openTab(event, 'tc6', 'android6', 'tl6')">Android</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl6 " onclick="openTab(event, 'tc6', 'ios6', 'tl6')">IOS</a></li></ul>
+<div id='android6' class='tabcontent tc6'>
+<pre><code class="language-java">UserKitIdentity.getAccountManager().deleteProfile("profile_id",
+        () -&gt; Log.d("DeleteProfile", "Delete profile succeed"),
+        Throwable::printStackTrace);
+</code></pre>
+</div>
+
+<p>{% sample lang="IOS" %}</p>
+
+<div id='ios6' class='tabcontent tc6'>
+<pre><code class="language-swift">UserKitIdentity.mainInstance().profileManager.deleteProfile(profileId, successBlock: { resultDictionary in
+        //your code
+}, failureBlock: { authenticationErrorModel in
+        //your code
+})
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
+<h2 id="page_Get+account+properties">Get account properties</h2>
+<p>{% method %}</p>
+<p>{% sample lang="Android" %}</p>
+<p>{% sample lang="IOS" %}</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl7 default_open" onclick="openTab(event, 'tc7', 'ios7', 'tl7')">IOS</a></li></ul>
+<div id='ios7' class='tabcontent tc7'>
+<pre><code class="language-swift">UserKitIdentity.mainInstance().profileManager.getProfile(successBlock: { properties in
+    //your code
+}, failureBlock: { error in
+    //your code
+})
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
+<h2 id="page_Update+account+properties">Update account properties</h2>
+<p>{% method %}</p>
+<p>{% sample lang="Android" %}</p>
+<p>{% sample lang="IOS" %}</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl8 default_open" onclick="openTab(event, 'tc8', 'ios8', 'tl8')">IOS</a></li>
+<li><a href="javascript:void(0)" class="tablinks tl8 " onclick="openTab(event, 'tc8', 'android8', 'tl8')">Android</a></li></ul>
+<div id='ios8' class='tabcontent tc8'>
+<pre><code class="language-swift">UserKitIdentity.mainInstance().profileManager.updateProfile(["pin": "1234"], successBlock: { properties in
+    //your code
+}, failureBlock: { error in
+    //your code
+})
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
+<h2 id="page_Change+password">Change password</h2>
+<p>{% method %}</p>
+<p>Change password is an important feature to help User protect their account,
+<code>AccountManager</code> provides API to change password of current account, remind
+again that <code>AccountManager</code> only works with the account currently logged in. <br><br/></br></p>
+<p>User also need to present their old password if they want to change password,
+it's because of security reason.</p>
+<p>{% sample lang="Android" %}</p>
+<p>You will get error if old password is not match, or new password invalid,...
+To handle these exceptions, see <a href="Getting_Started/Android.html#handling-errors">Handling errors</a>.</p>
+
+<div id='android8' class='tabcontent tc8'>
+<pre><code class="language-java">UserKitIdentity.getAccountManager().changePassword("old_password", "new_password")
+        .subscribe(
+            () -&gt; Toast.makeText(getContext(), "Change password succeed, now you can login with new password"),
+            error -&gt; handleError(error);    // handle errors
+        );
+</code></pre>
+</div>
+
+<p>{% sample lang="IOS" %}</p>
+<ul class='tab'>
+<li><a href="javascript:void(0)" class="tablinks tl9 default_open" onclick="openTab(event, 'tc9', 'ios9', 'tl9')">IOS</a></li></ul>
+<div id='ios9' class='tabcontent tc9'>
+<pre><code class="language-swift">UserKitIdentity.mainInstance().profileManager.changePassword("old_passord", newPassword: "new_password", successBlock: { object in
+        //your code
+}, failureBlock: { authenticationErrorModel in
+        //your code
+})
+</code></pre>
+</div>
+
+<p>{% endmethod %}</p>
 </div>
 <nav>
 <ul class="Pager">

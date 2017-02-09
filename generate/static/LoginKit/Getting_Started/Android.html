@@ -57,28 +57,31 @@
 <div class="Page__header">
 <h1><a href="../../LoginKit/Authenticate.html">LoginKit</a> <svg class="Page__header--separator" viewbox="0 0 477.175 477.175" xmlns="http://www.w3.org/2000/svg"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"></path></svg> <a href="../../LoginKit/Getting_Started/Android.html">Getting Started</a> <svg class="Page__header--separator" viewbox="0 0 477.175 477.175" xmlns="http://www.w3.org/2000/svg"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"></path></svg> <a href="../../LoginKit/Getting_Started/Android.html">Android</a></h1>
 <span style="float: left; font-size: 10px; color: gray;">
-            Thursday, December 29, 2016 10:43 PM        </span>
+            Thursday, February 9, 2017 1:47 AM        </span>
 <span style="float: right; font-size: 10px; color: gray;">
 <a href="https://github.com/khang-nt/sdk-doc/blob/master/docs/01_LoginKit/00_Getting_Started/Android.md" target="_blank">Edit on GitHub</a>
 </span>
 </div>
 <div class="s-content">
-<br>
 <center>
-<a href="https://bintray.com/mstage/mStage-SDK/LoginKit-SDK/_latestVersion"><img src="https://api.bintray.com/packages/mstage/mStage-SDK/LoginKit-SDK/images/download.svg"/></a> <img src="https://circleci.com/gh/jupitervn/userKit-Android-SDK/tree/master.svg?style=shield&amp;circle-token=0cb9923a82f369171f87d827bbc497e11b495e6d"/>
+<a href="https://bintray.com/mstage/mStage-SDK/LoginKit-SDK/_latestVersion"><img src="https://api.bintray.com/packages/mstage/mStage-SDK/LoginKit-SDK/images/download.svg"/></a> <a href="#"><img src="https://circleci.com/gh/jupitervn/userKit-Android-SDK/tree/master.svg?style=shield&amp;circle-token=0cb9923a82f369171f87d827bbc497e11b495e6d"/></a>
 </center>
-<br>
 <h1 id="page_Installation">Installation</h1>
 <hr/>
-<h4 id="page_Gradle">Gradle:</h4>
-<pre><code>repositories {
+<h4 id="page_Gradle%3A">Gradle:</h4>
+<p>Place <code>UserKitIdentity</code> dependency into your <code>build.gradle</code> in app module and make sure that <code>jcenter()</code>
+is added to <code>repositories</code> section at project level <code>build.gradle</code> file.</p>
+<pre><code class="language-gradle">repositories {
     jcenter()
 }
 dependencies {
     compile 'com.mstage.userkit:identity:$latest_version$'
 }
 </code></pre>
-<h4 id="page_AndroidManifestxml">AndroidManifest.xml</h4>
+<h4 id="page_AndroidManifest.xml">AndroidManifest.xml</h4>
+<p>It is optional step, that <code>UserKitIdentity</code> will find <code>USER_KIT_API_TOKEN</code>meta data
+in <code>AndroidManifest.xml</code> file, then you needn't to specify <code>USER_KIT_API_TOKEN</code>
+again when you <a href="#initialization">initialize</a> <code>UserKitIdentity</code> instance.</p>
 <pre><code class="language-xml">&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
 
 &lt;application
@@ -88,21 +91,26 @@ dependencies {
 
 &lt;/application&gt;
 </code></pre>
+<p>Permission <code>android.permission.INTERNET</code> is also required.</p>
 <h4 id="page_Initialization">Initialization</h4>
+<p>In most case, it makes sense that you should initialize <code>UserKitIdentity</code> when your <code>Application</code>
+create, and you just add one line to your code:</p>
 <pre><code class="language-Java">public class MainApplication extends Application {
     @Override
     public void onCreate() {
-        LoginKit.init(this);
-        // Or LoginKit.init(Context, USER_KIT_API_TOKEN)
+        UserKitIdentity.init(this);
+        // Or UserKitIdentity.init(Context, USER_KIT_API_TOKEN)
         // In case you haven't defined api token in AndroidManifest.xml
     }
 }
 
 </code></pre>
-<h1 id="page_Basic_tutorials">Basic tutorials</h1>
+<h1 id="page_Tutorials">Tutorials</h1>
 <hr/>
 <h2 id="page_Logging">Logging</h2>
-<p>Logging is disabled by default. To show/hide logs of <code>LoginKit</code>, just add some lines to your code:</p>
+<p>Print log is useful to debug your app, but strongly recommended that you shouldn't
+show any log in release product. Logging is disabled by default in <code>UserKitIdentity</code>,
+to show/hide logs just add some lines to your code:</p>
 <ul class='tab'>
 <li><a href="javascript:void(0)" class="tablinks tl0 default_open" onclick="openTab(event, 'tc0', 'android0', 'tl0')">Android</a></li></ul>
 <div id='android0' class='tabcontent tc0'>
@@ -114,11 +122,13 @@ Logging.disable();
 </code></pre>
 </div>
 
-<h2 id="page_Java_concurrency_support_using_RxJava2">Java concurrency support using RxJava2:</h2>
+<h2 id="page_Java+concurrency+support+using+RxJava2%3A">Java concurrency support using RxJava2:</h2>
+<p>You can observe result and <a href="#handling-errors">handle errors</a> of all APIs in <code>UserKitIdentity</code> SDK
+with <a class="external" href="http://reactivex.io/"><code>ReactiveX</code></a> concept.</p>
 <ul class='tab'>
 <li><a href="javascript:void(0)" class="tablinks tl1 default_open" onclick="openTab(event, 'tc1', 'android1', 'tl1')">Android</a></li></ul>
 <div id='android1' class='tabcontent tc1'>
-<pre><code class="language-java">LoginKit.getInstance().resetPassword("hello@world.com")
+<pre><code class="language-java">UserKitIdentity.getInstance().resetPassword("hello@world.com")
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(() -&gt; Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
@@ -126,46 +136,47 @@ Logging.disable();
 </code></pre>
 </div>
 
-<h4 id="page_Note">Note:</h4>
+<h4 id="page_Note%3A">Note:</h4>
 <blockquote>
 <p>This job won't run until you call <code>subscribe()</code>.</p>
 </blockquote>
-<p>If you want to run the request immediately and ignore the result, try it:</p>
+<p>If you want to run the request immediately and ignore the result, you can subscribe
+without specify any callback.</p>
 <ul class='tab'>
 <li><a href="javascript:void(0)" class="tablinks tl2 default_open" onclick="openTab(event, 'tc2', 'android2', 'tl2')">Android</a></li></ul>
 <div id='android2' class='tabcontent tc2'>
-<pre><code class="language-java">LoginKit.getInstance().resetPassword(email)
+<pre><code class="language-java">UserKitIdentity.getInstance().resetPassword(email)
         .subscribeOn(Schedulers.io())
         .subscribe();
 </code></pre>
 </div>
 
 <p>Read more about <a class="external" href="https://github.com/ReactiveX/RxJava/wiki"><code>RxJava</code></a>.</p>
-<h2 id="page_Lambda_expression_friendly">Lambda expression friendly</h2>
+<h2 id="page_Lambda+expression+friendly">Lambda expression friendly</h2>
 <p>If you don't like <code>Observer</code> pattern, you can easily define callback functions
 which was designed to friendly with Java 8 Lambda expression:</p>
 <ul class='tab'>
 <li><a href="javascript:void(0)" class="tablinks tl3 default_open" onclick="openTab(event, 'tc3', 'android3', 'tl3')">Android</a></li></ul>
 <div id='android3' class='tabcontent tc3'>
 <pre><code class="language-java">void doResetPassword(String email) {
-    LoginKit.getInstance().resetPassword(email,
+    UserKitIdentity.getInstance().resetPassword(email,
         () -&gt; Toast.makeText(this, "Reset password success", Toast.LENGTH_SHORT).show(),
         Throwable::printStackTrace);
 }
 </code></pre>
 </div>
 
-<h4 id="page_Notice_that">Notice that</h4>
+<h4 id="page_Notice+that">Notice that</h4>
 <blockquote>
 <p>This job will be scheduled to run in IO thread pool (<code>Schedulers.io()</code>), and will try to call back the consumer - <code>onSuccess</code> in the current thread (the thread call <code>resetPassword</code>), if can't, <code>onSuccess</code> will call back on <strong>main thread</strong>.</p>
 </blockquote>
 <p>And the same thing with all API has callback function.</p>
-<h2 id="page_Handling_errors">Handling errors</h2>
+<h2 id="page_Handling+errors">Handling errors</h2>
 <p>React with specific <code>Exception</code> case is one of the most important parts in programming.
-<code>LoginKit</code> make it simply to handle, if the error encountered is:</p>
+<code>UserKitIdentity</code> make it simply to handle, if the error encountered is:</p>
 <ul>
 <li>
-<code>IdentityException</code>: you made a bad request.
+<code>IdentityException</code>: somethings wrong with your request.
 You can print it into <code>Logcat</code> to get more detail. A convenient that you can know exactly
 what sort of error occurred, using <code>IdentityException.getIdentityError</code>.</li>
 <li>
@@ -182,7 +193,7 @@ there are some exceptions that we must handle, such as:</p>
 <ul class='tab'>
 <li><a href="javascript:void(0)" class="tablinks tl4 default_open" onclick="openTab(event, 'tc4', 'android4', 'tl4')">Android</a></li></ul>
 <div id='android4' class='tabcontent tc4'>
-<pre><code class="language-java">LoginKit.getInstance().signUpNewProfile("hello@world.com", "123abc", false, null,
+<pre><code class="language-java">UserKitIdentity.getInstance().signUpNewProfile("hello@world.com", "123abc", false, null,
         accountInfo -&gt; {
             Log.d(TAG, "Register account success: " + accountInfo);
         },
@@ -206,7 +217,7 @@ there are some exceptions that we must handle, such as:</p>
 </code></pre>
 </div>
 
-</br></br></div>
+</div>
 <nav>
 <ul class="Pager">
 <li class="Pager--prev"><a href="../../UserKit/Getting_Started/IOS.html">Previous</a></li> <li class="Pager--next"><a href="../../LoginKit/Getting_Started/IOS.html">Next</a></li> </ul>
