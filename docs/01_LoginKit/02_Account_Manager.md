@@ -179,6 +179,42 @@ UserKitIdentity.mainInstance().profileManager.deleteProfile(profileId, successBl
 
 {% endmethod %}
 
+## Get account properties
+
+{% method %}
+
+{% sample lang="Android" %}
+
+{% sample lang="IOS" %}
+
+```swift
+UserKitIdentity.mainInstance().profileManager.getProfile(successBlock: { properties in
+    //your code
+}, failureBlock: { error in
+    //your code
+})
+```
+
+{% endmethod %}
+
+## Update account properties
+
+{% method %}
+
+{% sample lang="Android" %}
+
+{% sample lang="IOS" %}
+
+```swift
+UserKitIdentity.mainInstance().profileManager.updateProfile(["pin": "1234"], successBlock: { properties in
+    //your code
+}, failureBlock: { error in
+    //your code
+})
+```
+
+{% endmethod %}
+
 ## Change password
 
 {% method %}
